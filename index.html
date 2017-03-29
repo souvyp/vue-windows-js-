@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/app.js"></script>
+    <style>
+    .class1 {
+        background: #333;
+        color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>vue实例</h1>
+    <div id="app">
+        <dl>
+            <dt>纯文本插入:{{ }}</dt>
+            <dd>{{msg}}</dd>
+        </dl>
+        <dl>
+            <dt>html插入:v-html</dt>
+            <dd v-html="msg"></dd>
+        </dl>
+        <dl>
+            <dt>属性:v-bind</dt>
+            <dd>
+                <label for="r1">修改颜色
+                    <input type="checkbox" v-model="class1" id='r1'>
+                </label>
+                <div v-bind:class="{'class1':class1}">
+                    文本背景颜色
+                </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>js表达式</dt>
+            <dd>{{5+5}}</dd>
+            <dd>{{ok ?'yes':'no'}}</dd>
+        </dl>
+        <dl>
+        	<dt>指令，带v前缀的</dt>
+        	<dd>
+        		<p v-if="seen">seen的布尔值决定是否看到这个</p>
+        	</dd>
+        </dl>
+        <dl>
+        	<dt>参数，在指令后用冒号</dt>
+        	<dd><a v-bind:href="url">链接</a></dd>
+        </dl>
+        <dl>
+        	<dt>修饰符 .</dt>
+        	<dd>v-on:submit.prevent="onSubmit</dd>
+        </dl>
+        <dl>
+        	<dt>用户输入 v-model双向绑定</dt>
+        	<dd><input type="text" v-model="message"></dd>
+        	<dd>{{message}}</dd>
+        </dl>
+        <dl>
+        	<dt>事件可以用v-on监听</dt>
+        	<dd><button v-on:click="reverses">翻转</button></dd>
+        	<dd>{{str}}</dd>
+        </dl>
+        <dl>
+        	<dt>过滤器,一般用来文本格式化</dt>
+        	<dd>{{message | capitalize}}</dd>
+        </dl>
+        <dl>
+        	<dt>v-bind缩写</dt>
+        	<dd>&lt;a v-bind:href="url"&gt;&lt;/a&gt;</dd>
+        	<dd>v-bind:替换为:</dd>
+        </dl>
+        <dl>
+        	<dt>v-on缩写</dt>
+        	<dd>v-on:替换为@</dd>
+        </dl>
+        <dl>
+        	<dt>构造器</dt>
+        	<dd>
+        		<pre>var data={a:1}</pre>
+        		<pre>var vm=new Vue({data:data})</pre>
+        		<pre>vm.a===data.a</pre>
+        	</dd>
+        </dl>
+    </div>
+    <script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '<h1>hello</h1>',
+            class1: true,
+            ok:true,
+            seen:true,
+            url:'http://baidu.com',
+            message:'tianwei',
+            str:'abcdefghijk'
+        },
+        methods:{
+        	reverses:function(){
+        		this.str=this.str.split('').reverse().join('')
+        	}
+        },
+        filters:{
+        	capitalize:function(value){
+        		if(!value) return ''
+        		value=value.toString()
+        		return value.charAt(0).toUpperCase()+value.slice(1)
+        	}
+        }
+    })
+    </script>
+</body>
+
+</html>
