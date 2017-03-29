@@ -10,11 +10,57 @@
 <body>
     <h1>vue实例1</h1>
     <div id="app">
-       
+        <dl><dt>条件语句：v-if v-else-f v-else</dt></dl>
+       <template>
+           <p v-if="type==='a'">可以看见的aa</p>
+           <p v-else-if="type==='b'">可以看见的bb</p>
+           <p v-else-if="type==='c'">可以看见的cc</p>
+           <p v-else>not abc</p>
+       </template>
+    <dl>
+        <dt>v-show不支持template语法</dt>
+        <dd><p v-show="ok">好吧ok</p></dd>
+    </dl>
+<hr>
+<dl>
+    <dt>循环语句 v-for</dt>
+    <dd>格式 v-for="site in sites"</dd>
+</dl>
+<dl>
+    <dt>v-for案例</dt>
+    <dd v-for="site in sites">{{site.name}}</dd>
+</dl>
+<dl>
+    <dt>v-for迭代对象</dt>
+    <dd>样式：v-for="(value, key, index) in object"</dd>
+    <dd>第二个参数：键名，第三个参数：索引</dd>
+    <dd v-for="(value,key,index) in object">
+        {{index}}.{{key}}.{{value}}
+    </dd>
+</dl>
+<dl>
+    <dt>迭代整数</dt>
+    <dd>v-for="n in 5"</dd>
+    <dd v-for="n in 5">{{n}}</dd>
+</dl>
     </div>
     <script>
     new Vue({
         el: '#app',
+        data:{
+            type:'c',
+            ok:true,
+            sites:[
+            {name:'aaaa'},
+            {name:'bbbb'},
+            {name:'cccc'}
+            ],
+            object:{
+                name:'名称vue',
+                url:'http://',
+                slogon:'vue声明'
+            }
+        }
         
     })
     </script>
